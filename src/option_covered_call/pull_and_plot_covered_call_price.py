@@ -17,7 +17,7 @@ def get_call_and_stock_close_price(ticker,option_expiration_date,stock_start_dat
     call_data['Stock Price +10%'] = stock_close_price * 1.10
     call_data['Stock Close Date'] = stock_close_date
     
-    call_data = call_data[(call_data['Strike'] > stock_close_price) & (call_data['Strike'] < stock_close_price*1.20)].reset_index(drop=True)
+    call_data = call_data[(call_data['Strike'] > stock_close_price) & (call_data['Strike'] < stock_close_price*1.125)].reset_index(drop=True)
     
     return call_data
 
@@ -44,6 +44,10 @@ def plot_covered_call_price(df,ticker):
     plt.text(stock_close_price*1.10,y_max*0.1,f'+10%\n{stock_close_price*1.10:.2f}')
     plt.axvline(stock_close_price * 1.05,color='green',linewidth=1)
     plt.text(stock_close_price*1.05,y_max*0.1,f'+5%\n{stock_close_price*1.05:.2f}')
+    plt.axvline(stock_close_price * 1.025,color='green',linewidth=1)
+    plt.text(stock_close_price*1.025,y_max*0.15,f'+2.5%\n{stock_close_price*1.025:.2f}')
+    plt.axvline(stock_close_price * 1.075,color='green',linewidth=1)
+    plt.text(stock_close_price*1.075,y_max*0.15,f'+7.5%\n{stock_close_price*1.075:.2f}')
     plt.grid(color='lightgrey')
     plt.legend()
     plt.show()

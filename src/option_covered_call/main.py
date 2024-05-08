@@ -6,17 +6,17 @@ tickers = ['TMP','META','AMD','TMP','MSFT','PLTR','GLD','INTC','AMZN','TMP'] #['
 option_expiration_date = 'May 3, 2024'
 
 today = date.today()
+stock_end_date = today + timedelta(3)
 stock_start_date = today - timedelta(5)
 
 for ticker in tickers:
     try:
-        data = get_call_and_stock_close_price(ticker,option_expiration_date,stock_start_date,today)
+        data = get_call_and_stock_close_price(ticker,option_expiration_date,stock_start_date,stock_end_date)
     except:
         print('=' * 100)
         print(f'{ticker} may not be valid. Please verify and try again!')
         continue
         
-#    data = get_call_and_stock_close_price(ticker,option_expiration_date,stock_start_date,today)
     print('=' * 100)
     print(ticker)
     print(data)
